@@ -1,5 +1,6 @@
 version: '3'
 services:
+  # Api server
   app:
     container_name: app
     build: ./go
@@ -10,3 +11,21 @@ services:
       - GOPATH= # 使用しないのでクリア
     volumes:
       - ./go/src:/go/src
+
+  # DB server
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: go
+      MYSQL_USER: go
+      MYSQL_PASSWORD: go
+      TZ: Asia/Tokyo
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql/logs:/var/log/mysql
+    restart: always

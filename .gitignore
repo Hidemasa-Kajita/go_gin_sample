@@ -1,5 +1,7 @@
 go/src/pkg
 
+mysql/data
+
 *.log
 logs
 
