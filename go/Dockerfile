@@ -11,7 +11,9 @@ RUN go mod download && \
     golang.org/x/tools/gopls \
     github.com/ramya-rao-a/go-outline \
     github.com/uudashr/gopkgs/v2/cmd/gopkgs \
-    github.com/stamblerre/gocode
+    github.com/stamblerre/gocode \
+    github.com/jinzhu/gorm \
+    github.com/go-sql-driver/mysql
 
 RUN go build
 
