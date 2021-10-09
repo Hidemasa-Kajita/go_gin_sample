@@ -23,3 +23,6 @@ $ task up
 
 ## packages
 - [github.com/gin-gonic/gin v1.7.4](https://github.com/gin-gonic/gin)
+- [github.com/jinzhu/gorm](https://gorm.io/ja_JP/docs/index.html)
+- [github.com/go-sql-driver/mysql](https://github.com/go-sql-driver/mysql)
+- [github.com/cosmtrek/air](https://github.com/cosmtrek/air)
