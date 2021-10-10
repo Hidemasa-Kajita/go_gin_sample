@@ -2,9 +2,11 @@ package database
 
 import (
 	"fmt"
-	"github.com/jinzhu/gorm"
-    _ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
+
+	"github.com/Hidemasa-Kajita/go_api_sample/entity"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 const (
@@ -25,7 +27,7 @@ const (
 )
 
 func Connect() *gorm.DB {
-    connectTemplate := "%s:%s@%s/%s"
+    connectTemplate := "%s:%s@%s/%s?parseTime=true"
     connect := fmt.Sprintf(connectTemplate, DBUser, DBPass, DBProtocol, DBName)
     db, err := gorm.Open(Dialect, connect)
 
@@ -33,5 +35,12 @@ func Connect() *gorm.DB {
         log.Println(err.Error())
     }
 
+    db.LogMode(true)
+	db.Set("gorm:table_options", "ENGINE = InnoDB").AutoMigrate(&entity.User{})
+
     return db
+}
+
+func Disconnect(db *gorm.DB) {
+    defer db.Close()
 }
